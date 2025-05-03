@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../db/connection';
-import {Estudiante} from './estudiante';
-import {Curso} from './curso';
+import {Estudiante} from './estudiante.model';
+import {Curso} from './curso.model';
 
 export const CursoEstudiante = sequelize.define('curso_estudiante', {
     id: { 

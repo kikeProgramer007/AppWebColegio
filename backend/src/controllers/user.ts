@@ -12,7 +12,7 @@ export const newUser = async (req: Request, res: Response) => {
 
     if(user) {
        return res.status(400).json({
-            msg: `Ya existe un usuario con el nombre ${username}`
+            mensaje: `Ya existe un usuario con el nombre ${username}`
         })
     } 
  
@@ -26,11 +26,11 @@ export const newUser = async (req: Request, res: Response) => {
         })
     
         res.json({
-            msg: `Usuario ${username} creado exitosamente!`
+            mensaje: `Usuario ${username} creado exitosamente!`
         })
     } catch (error) {
         res.status(400).json({
-            msg: 'Upps ocurrio un error',
+            mensaje: 'Upps ocurrio un error',
             error
         })
     }
@@ -45,7 +45,7 @@ export const loginUser = async (req: Request, res: Response) => {
 
    if(!user) {
         return res.status(400).json({
-            msg: `No existe un usuario con el nombre ${username} en la base datos`
+            mensaje: `No existe un usuario con el nombre ${username} en la base datos`
         })
    }
 
@@ -53,7 +53,7 @@ export const loginUser = async (req: Request, res: Response) => {
    const passwordValid = await bcrypt.compare(password, user.password)
    if(!passwordValid) {
     return res.status(400).json({
-        msg: `Password Incorrecta`
+        mensaje: `Password Incorrecta`
     })
    }
    let id = user.id;
@@ -61,7 +61,7 @@ export const loginUser = async (req: Request, res: Response) => {
    const token = jwt.sign({
     id: id,
     username: username
-   }, process.env.SECRET_KEY || 'pepito123');
+   }, process.env.SECRET_KEY || 'test123');
    
    res.json(token);
 }

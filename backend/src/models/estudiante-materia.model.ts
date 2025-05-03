@@ -3,7 +3,7 @@
 // ----------------------------------
 import { DataTypes } from 'sequelize';
 import sequelize from '../db/connection';
-import {Estudiante} from './estudiante';
+import {Estudiante} from './estudiante.model';
 import {Materia} from './materia';
 
 export const EstudianteMateria = sequelize.define('estudiante_materia', {

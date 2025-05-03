@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsString, Length } from 'class-validator';
 
-export class CursoDTO {
+export default class CursoDTO {
     
     @IsNotEmpty({ message: 'El grado es obligatorio' })
     @IsString({ message: 'El grado debe ser texto' })

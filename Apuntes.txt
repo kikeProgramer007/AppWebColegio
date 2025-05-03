@@ -82,3 +82,6 @@ npx sequelize-cli model:generate --name Curso --attributes grado:string,grupo:st
 
 
 npm install class-validator class-transformer
+
+Variables aleatorias de postman:
+https://learning.postman.com/docs/tests-and-scripts/write-scripts/variables-list/

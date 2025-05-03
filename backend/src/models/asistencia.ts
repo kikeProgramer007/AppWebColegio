@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../db/connection';
-import {Estudiante} from './estudiante';
+import {Estudiante} from './estudiante.model';
 import {Licencia} from './licencia';
 
 export const Asistencia = sequelize.define('asistencia', {

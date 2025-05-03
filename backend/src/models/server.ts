@@ -1,16 +1,19 @@
 import express, { Application } from 'express';
 import cors from 'cors';
 
-import { User } from './user';
-import routeCurso from '../routes/curso';
+//routes
+import routeCurso from '../routes/curso.routes';
+import routeEstudiante from '../routes/estudiante.routes';
 import routeUser from '../routes/user';
-import { Curso } from './curso';
+//models
+import { User } from './user';
+import { Curso } from './curso.model';
 import { Materia} from './materia'
-import { Estudiante } from './estudiante';
+import { Estudiante } from './estudiante.model';
 import { Licencia} from './licencia'
 import { Asistencia} from './asistencia'
 import { CursoEstudiante} from './curso_estudiante'
-import { EstudianteMateria} from './estudiante_materia'
+import { EstudianteMateria} from './estudiante-materia.model'
 import  Aviso from './aviso'
 
 class Server {
@@ -35,6 +38,7 @@ class Server {
     routes() {
         this.app.use('/api/users',routeUser);
         this.app.use('/api/cursos',routeCurso);
+        this.app.use('/api/estudiantes',routeEstudiante);
     }
 
     midlewares() {
@@ -47,7 +51,6 @@ class Server {
 
     async dbConnect() {
         try {
-   
             await User.sync();
             await Curso.sync()
             await Materia.sync()

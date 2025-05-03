@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../db/connection';
-import { Curso } from './curso';
+import { Curso } from './curso.model';
 
 export const Materia = sequelize.define('materia', {
     id: { 
