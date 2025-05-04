@@ -52,6 +52,7 @@ export class CursoController {
    */
   public static async crear(req: Request, res: Response): Promise<void> {
     try {
+      console.log(req);
       // Validar datos de entrada y manejar errores automáticamente
       const datosValidados = await DtoValidator.validateAndRespond(CursoDTO, req.body, res);
       

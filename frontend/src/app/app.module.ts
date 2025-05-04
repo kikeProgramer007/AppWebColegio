@@ -14,17 +14,14 @@ import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './components/login/login.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { NavbarComponent } from './components/template/navbar/navbar.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { AddTokenInterceptor } from './utils/add-token.interceptor';
-import { ProductComponent } from './components/product/product.component';
-import { CategoriaComponent } from './components/categoria/categoria.component';
-import { ClienteComponent } from './components/cliente/cliente.component';
-import { ListarComponent } from './components/empleado/listar/listar.component';
-import { CrearEditarComponent } from './components/empleado/crear-editar/crear-editar.component';
-import { NotaventaComponent } from './components/notaventa/notaventa.component';
-import { VentarealizadaComponent } from './components/ventarealizada/ventarealizada.component';
-import { ReporteComponent } from './components/reporte/reporte.component';
+
+import { ListarComponent } from './components/curso/listar/listar.component';
+import { CrearEditarComponent } from './components/curso/crear-editar/crear-editar.component';
+import { SidebarComponent } from './components/template/sidebar/sidebar.component';
+import { FooterComponent } from './components/template/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -33,15 +30,11 @@ import { ReporteComponent } from './components/reporte/reporte.component';
     SignInComponent,
     DashboardComponent,
     NavbarComponent,
+    SidebarComponent,
+    FooterComponent,
     SpinnerComponent,
-    ProductComponent,
-    CategoriaComponent,
-    ClienteComponent,
     ListarComponent,
-    CrearEditarComponent,
-    NotaventaComponent,
-    VentarealizadaComponent,
-    ReporteComponent
+    CrearEditarComponent
   ],
   imports: [
     BrowserModule,
