@@ -1,51 +1,58 @@
-<app-navbar></app-navbar>
-<app-spinner *ngIf="loading"></app-spinner>
-<div class="container mt-4 text-center">
-    <div *ngIf="!loading" class="row mt-1">
-        <div class="col-lg-4 offset-lg-4">
-            <div class="card mb-3" style="max-width: 25rem;">
-                <div class="card-header text-center">
-                  <h3>  {{ operacion }} Curso</h3>
-                </div>
-                <div class="card-body">
-                    <form [formGroup]="form" (ngSubmit)="Save()">
+<div *ngIf="!loading">
+
+    <div class="pagetitle">
+        <h1>{{ operacion }} Curso</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item">Proveedores</li>
+                <li class="breadcrumb-item active">Crear Proveedor</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    <section class="section">
+        <div class="row">
+        <div class="card col-lg-12">
+            <div class="card-body">
+
+                <form class="row g-3 mt-0" [formGroup]="form" (ngSubmit)="Save()">
+                
+                    <div class="col-md-12">
+                        <label for="grado" class="form-label">Grado</label>
                         <input formControlName="grado" type="text" class="form-control" placeholder="Ingrese grado">
                         <span class="text-danger" *ngIf="form.get('grado')?.hasError('required') && form.get('grado')?.touched">
                             El campo grado es <strong>requerido</strong>
                         </span>
-                        
-                       <!-- <input formControlName="telefono" type="tel"class="form-control mt-2" placeholder="Ingrese telefono">
-                        <div class="text-danger" >
-                            <span *ngIf="form.get('telefono')?.hasError('required') && form.get('telefono')?.touched">
-                                El campo telefono es <strong>requerido</strong>
-                            </span>
-                            <span *ngIf="form.get('telefono')?.hasError('pattern') && form.get('telefono')?.touched">
-                                Ingrese un número de teléfono válido.
-                             </span>
-                        </div>-->
-
-                        <input formControlName="grupo" type="text" class="form-control mt-2" placeholder="Ingrese grupo">
+                    </div>
+                   
+                    <div class="col-md-6">
+                        <label for="grupo" class="form-label">Grupo</label>
+                        <input formControlName="grupo" type="text" class="form-control" placeholder="Ingrese grupo">
                         <span class="text-danger"  *ngIf="form.get('grupo')?.hasError('required') && form.get('grupo')?.touched">
                             El campo grupo es <strong>requerido</strong>
                         </span>
+                    </div>
 
-                        <input formControlName="nivel" type="email" class="form-control mt-2" placeholder="Ingrese nivel">
-                        <span class="text-danger"  *ngIf="form.get('nivel')?.hasError('required') && form.get('nivel')?.touched">
+                    <div class="col-md-6">
+                        <label for="nivel" class="form-label">Nivel</label>
+                        <input formControlName="nivel" type="email" class="form-control" placeholder="Ingrese nivel">
+                        <span class="text-danger" *ngIf="form.get('nivel')?.hasError('required') && form.get('nivel')?.touched">
                             El campo nivel es <strong>requerido</strong>
                         </span>
-             
-                        <div class="row mt-2 text-center">
-                            <div class="col-lg-6">
-                                <button routerLink="/curso" type="button" class="btn btn-secondary">Volver</button>
-                            </div>
-                            <div class="col-lg-6">
-                                <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Aceptar</button>
-                            </div>
-                        </div>
-                        
-                    </form>
-                </div>
+                    </div>
+                
+                    <div class="text-center">
+                        <button routerLink="/curso" type="button" class="btn btn-secondary mr-2">Regresar</button>&nbsp;
+                        <button [disabled]="form.invalid" type="submit" class="btn btn-primary mr-2">Aceptar</button>
+                    </div>
+        
+                </form><!-- End Multi Columns Form -->
             </div>
         </div>
+         
     </div>
+
+    </section>
+
 </div>
+<app-spinner *ngIf="loading"></app-spinner>

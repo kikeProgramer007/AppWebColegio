@@ -6,6 +6,19 @@
 * License: https://bootstrapmade.com/license/
 */
 
+    /**
+    * Sidebar toggle
+    */
+
+window.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.querySelector('.toggle-sidebar-btn');
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('toggle-sidebar');
+        });
+    }
+});
+
 (function() {
     "use strict";
   

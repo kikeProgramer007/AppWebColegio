@@ -1,65 +1,60 @@
+<div *ngIf="!loading">
 
+  <div class="pagetitle">
+    <h1>Blank Page</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/dashboard">Home</a></li>
+        <li class="breadcrumb-item">Pages</li>
+        <li class="breadcrumb-item active">Cursos</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
 
-<div *ngIf="!loading" class="container mt-4 text-center">
-  <div class="row">
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="mb-0 mt-0 card-title d-flex justify-content-end">
+              <div class="">
+                <a class="btn btn-success btn-sm" routerLink="/curso/crear" role="button" ><i class="fas fa-plus"></i>Agregar</a>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table-bordered table table-sm  table-hover table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Direccion</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col"width="1%"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of Lista">
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.grado }} </td>
+                    <td>{{ item.grupo }} </td>
+                    <td>{{ item.nivel }} </td>
+                    <td class="py-1 align-middle text-center">
+                      <div class="btn-group btn-group-sm">
+                          <button routerLink="/curso/editar/{{ item.id }}" type="button" class="btn btn-info"  rel="tooltip" data-placement="top" title="Editar"><i class="bi bi-pencil-square"></i></button>
+                          <button type="button" class="btn btn-danger" rel="tooltip" data-placement="top" title="Eliminar" (click)="Delete(item.id!)" data-bs-toggle="modal" data-bs-target="#modal-confirma"><i class="bi bi-trash3-fill"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
   
-
-    <div class="col-lg-8 offset-lg-2">
-          <div class="text-center">
-              <h2>Cursos</h2>
-          </div>
-    </div>
-  </div>
-  <div class="row mt-4">
-    <div class="card">
-      <div class="card-body">
-
-        <div class="mb-2 d-flex justify-content-end">
-          <div class="form-group">
-            <a class="btn btn-success btn-sm" routerLink="/curso/crear" role="button" ><i class="fas fa-plus"></i>&nbsp;&nbsp;Agregar</a>
-          </div>
-        </div>
-
-        <div class="table-responsive">
-          <!-- Table with stripped rows -->
-          <table class="datatable table-bordered table table-sm  table-hover table-striped ">
-            <thead>
-              <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Telefono</th>
-                <th scope="col">Direccion</th>
-                <th scope="col">Correo</th>
-                <th scope="col"width="1%"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of Lista">
-                <td>{{ item.id }}</td>
-                <td>{{ item.grado }} </td>
-                <td>{{ item.grupo }} </td>
-                <td>{{ item.nivel }} </td>
-
-
-                <td class="py-1 align-middle text-center">
-                  <div class="btn-group btn-group-sm">
-                      <button routerLink="/curso/editar/{{ item.id }}" type="button" class="btn btn-info"
-                          rel="tooltip" data-placement="top" title="Editar"><i
-                              class="bi bi-pencil-square"></i></button>
-                      <button type="button" class="btn btn-danger" rel="tooltip"
-                          data-placement="top" title="Eliminar"
-                          (click)="Delete(item.id!)"
-                          data-bs-toggle="modal" data-bs-target="#modal-confirma"><i
-                              class="bi bi-trash3-fill"></i></button>
-                  </div>
-                </td>
-
-              </tr>
-            
-            </tbody>
-          </table>
-        </div>
       </div>
     </div>
-  </div>
+  </section>
+  
 </div>
 <app-spinner *ngIf="loading"></app-spinner>

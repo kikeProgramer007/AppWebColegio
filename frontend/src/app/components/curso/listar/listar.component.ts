@@ -18,13 +18,13 @@ export class ListarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+  
     this.GetList()
   }
 
   GetList() {
     this.loading = true;
-
+    
     this._cursoService.getLista().subscribe((data: Curso[]) => {
       this.Lista = data;
       this.loading = false;
