@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,7 +8,10 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private renderer: Renderer2
+  ) { }
 
   ngOnInit(): void {
   }
@@ -17,5 +20,13 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('token');
     this.router.navigate(['/login'])
   }
-
+  
+  toggleSidebar() {
+    const body = document.body;
+    if (body.classList.contains('toggle-sidebar')) {
+      this.renderer.removeClass(body, 'toggle-sidebar');
+    } else {
+      this.renderer.addClass(body, 'toggle-sidebar');
+    }
+  }
 }

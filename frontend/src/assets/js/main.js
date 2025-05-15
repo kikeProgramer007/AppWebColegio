@@ -10,15 +10,6 @@
     * Sidebar toggle
     */
 
-window.addEventListener('DOMContentLoaded', () => {
-    const toggleBtn = document.querySelector('.toggle-sidebar-btn');
-    if (toggleBtn) {
-        toggleBtn.addEventListener('click', () => {
-        document.body.classList.toggle('toggle-sidebar');
-        });
-    }
-});
-
 (function() {
     "use strict";
   
@@ -52,14 +43,6 @@ window.addEventListener('DOMContentLoaded', () => {
       el.addEventListener('scroll', listener)
     }
   
-    /**
-     * Sidebar toggle
-     */
-    if (select('.toggle-sidebar-btn')) {
-      on('click', '.toggle-sidebar-btn', function(e) {
-        select('body').classList.toggle('toggle-sidebar')
-      })
-    }
   
     /**
      * Search bar toggle
