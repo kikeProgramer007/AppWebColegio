@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { InicioComponent } from './components/inicio/inicio.component';
 
 // Componentes
 import { LoginComponent } from './components/login/login.component';
@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'curso', component: ListarComponent },
   { path: 'curso/crear', component: CrearEditarComponent },
   { path: 'curso/editar/:id', component: CrearEditarComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'inicio', component: InicioComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];
 

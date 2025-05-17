@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     this._userService.login(user).subscribe({
       next: (token) => {
         localStorage.setItem('token', token);
-        this.router.navigate(['/dashboard'])
+        this.router.navigate(['/inicio'])
       },
       error: (e: HttpErrorResponse) => {
         this._errorService.msjError(e);
