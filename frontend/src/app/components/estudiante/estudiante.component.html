@@ -1,0 +1,161 @@
+<div *ngIf="!loading">
+
+    <div class="pagetitle">
+      <h1>Estudiantes</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/inicio">Inicio</a></li>
+          <li class="breadcrumb-item">Estudiantes</li>
+          <li class="breadcrumb-item active">Lista</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+  
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="mb-0 mt-0 card-title d-flex justify-content-end">
+                <div class="">
+                  <a class="btn btn-success btn-sm"  (click)="AbrirModal()"role="button" ><i class="fas fa-plus"></i>Agregar</a>
+                </div>
+              </div>
+  
+              <div class="table-responsive">
+                <table class="table-bordered table table-sm  table-hover table-striped text-center">
+                  <thead>
+                    <tr class="table-dark">
+                      <th scope="col">ID</th>
+                      <th scope="col">RUDE</th>
+                      <th scope="col">CI</th>
+                      <th scope="col">NOMBRE</th>
+                      <th scope="col">APELLIDOS</th>
+                      <th scope="col">GENERO</th>
+                      <th scope="col">F. NACIMIENTO</th>
+                      <th scope="col"width="1%"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of Lista">
+                      <td>{{ item.id }}</td>
+                      <td>{{ item.codigo_rude }} </td>
+                      <td>{{ item.cedula_identidad }} </td>
+                      <td>{{ item.nombre }} </td>
+                      <td>{{ item.apellido_paterno + ' ' + item.apellido_materno }} </td>
+                      <td>{{ item.genero }} </td>
+                      <td>{{ item.fecha_nacimiento }} </td>
+                      <td class="py-1 align-middle text-center">
+                        <div class="btn-group btn-group-sm">
+                            <button type="button" (click)="Update(item)" class="btn btn-info"  rel="tooltip" data-placement="top" title="Editar"><i class="bi bi-pencil-square"></i></button>
+                            <button type="button" class="btn btn-danger" rel="tooltip" data-placement="top" title="Eliminar" (click)="Delete(item.id!)" data-bs-toggle="modal" data-bs-target="#modal-confirma"><i class="bi bi-trash3-fill"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+    
+        </div>
+      </div>
+    </section>
+
+
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" #myModal>
+      <div class="modal-dialog modal-dialog-centered">
+   
+        <form class="modal-content" [formGroup]="form" (ngSubmit)="Save()">
+        <div class="modal-header p-2">
+          <h5 class="modal-title">{{accion}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+       
+          <div class="modal-body  pt-1 row g-2 mt-0">
+             
+            <div class="col-md-6">
+              <label for="codigo_rude" class="fw-bolder">Codigo Rude</label>
+              <input formControlName="codigo_rude" type="text" class="form-control form-control-sm">
+              <small class="text-danger" *ngIf="form.get('codigo_rude')?.hasError('required') && form.get('codigo_rude')?.touched">
+                 codigo_rude <strong>requerido</strong>
+              </small>
+            </div>
+            <div class="col-md-6">
+              <label for="cedula_identidad" class="fw-bolder">Cedula de Identidad</label>
+              <input formControlName="cedula_identidad" type="text" class="form-control form-control-sm">
+              <small class="text-danger" *ngIf="form.get('cedula_identidad')?.hasError('required') && form.get('cedula_identidad')?.touched">
+                cedula_identidad <strong>requerido</strong>
+              </small>
+            </div>
+            <div class="col-md-12">
+                <label for="nombre" class="fw-bolder">Nombre</label>
+                <input formControlName="nombre" type="text" class="form-control form-control-sm">
+                <small class="text-danger" *ngIf="form.get('nombre')?.hasError('required') && form.get('nombre')?.touched">
+                   nombre <strong>requerido</strong>
+                </small>
+            </div>
+           
+            <div class="col-md-6">
+                <label for="apellido_paterno" class="fw-bolder">Apellido Paterno</label>
+                <input formControlName="apellido_paterno" type="text" class="form-control form-control-sm">
+                <small class="text-danger"  *ngIf="form.get('apellido_paterno')?.hasError('required') && form.get('apellido_paterno')?.touched">
+                   apellido_paterno <strong>requerido</strong>
+                </small>
+            </div>
+
+            <div class="col-md-6">
+                <label for="apellido_materno" class="fw-bolder">Apellido Materno</label>
+                <input formControlName="apellido_materno" type="email" class="form-control form-control-sm">
+                <small class="text-danger" *ngIf="form.get('apellido_materno')?.hasError('required') && form.get('apellido_materno')?.touched">
+                   apellido_materno <strong>requerido</strong>
+                </small>
+            </div>
+        
+            <div class="col-md-6">
+              <label for="genero" class="fw-bolder">Género</label><br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" 
+                       type="radio" 
+                       formControlName="genero"
+                       id="masculino" 
+                       value="M"
+                       (change)="form.get('genero')?.markAsTouched()">
+                <label class="form-check-label" for="masculino">Masculino</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" 
+                       type="radio" 
+                       formControlName="genero"
+                       id="femenino" 
+                       value="F"
+                       (change)="form.get('genero')?.markAsTouched()">
+                <label class="form-check-label" for="femenino">Femenino</label>
+              </div>
+              <br>
+              <small class="text-danger" *ngIf="form.get('genero')?.hasError('required') && form.get('genero')?.touched">
+                Género es <strong>requerido</strong>
+              </small>
+            </div>
+
+            <div class="col-md-6">
+              <label for="fecha_nacimiento" class="fw-bolder">Fecha Nacimiento</label>
+              <input formControlName="fecha_nacimiento" type="date"class="form-control form-control-sm" >
+              <small class="text-danger" *ngIf="form.get('fecha_nacimiento')?.hasError('required') && form.get('fecha_nacimiento')?.touched">
+                fecha_nacimiento <strong>requerido</strong>
+              </small>
+            </div>
+
+          </div>
+          <div class="modal-footer p-1">
+            <button type="button" class="btn btn-secondary btn-sm" (click)="closeModal()" >Close</button>
+            <button [disabled]="form.invalid" type="submit" class="btn btn-primary btn-sm">{{ accion }} </button>
+          </div>
+      
+      </form><!-- End Multi Columns Form -->
+    </div>
+
+  </div><!-- End Vertically centered Modal-->
+    
+  </div>
+  <app-spinner *ngIf="loading"></app-spinner>

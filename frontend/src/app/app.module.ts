@@ -19,6 +19,7 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { AddTokenInterceptor } from './utils/add-token.interceptor';
 
 import { ListarComponent } from './components/curso/listar/listar.component';
+import { EstudianteComponent  } from './components/estudiante/estudiante.component';
 import { CrearEditarComponent } from './components/curso/crear-editar/crear-editar.component';
 import { SidebarComponent } from './components/template/sidebar/sidebar.component';
 import { FooterComponent } from './components/template/footer/footer.component';
@@ -34,6 +35,7 @@ import { FooterComponent } from './components/template/footer/footer.component';
     FooterComponent,
     SpinnerComponent,
     ListarComponent,
+    EstudianteComponent,
     CrearEditarComponent
   ],
   imports: [

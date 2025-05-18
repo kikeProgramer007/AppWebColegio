@@ -17,7 +17,7 @@ export class ErrorService {
    * @param error Error HTTP recibido
    * @returns Observable con estructura de error estandarizada
    */
-  public handleError(error: HttpErrorResponse): Observable<never> {
+  public handleError(error: HttpErrorResponse): Observable<any> {
     let errorResponse: ErrorResponse;
     
     // Error de validación (400)

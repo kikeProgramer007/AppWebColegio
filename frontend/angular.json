@@ -34,6 +34,7 @@
               "src/assets/vendor/remixicon/remixicon.css"
             ],
             "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
               "src/assets/vendor/bootstrap/js/bootstrap.bundle.min.js",
               "src/assets/js/main.js",
               "node_modules/jquery/dist/jquery.min.js",
@@ -43,7 +44,6 @@
               "src/assets/vendor/echarts/echarts.min.js",
               "src/assets/vendor/quill/quill.js",
               "src/assets/vendor/php-email-form/validate.js"
-           
             ]
           },
           "configurations": {
