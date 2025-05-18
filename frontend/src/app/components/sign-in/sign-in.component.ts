@@ -54,7 +54,7 @@ export class SignInComponent implements OnInit {
       },
       error: (e: HttpErrorResponse) => {
         this.loading = false;
-        this._errorService.msjError(e);
+        this._errorService.handleError(e)
       }
     })
   }

@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {  FormBuilder, FormGroup, Validators  } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { Curso } from 'src/app/interfaces/curso';
+import { ToastrUtils } from 'src/app/utils/toast.utils';
+
+import { ErrorResponse } from 'src/app//interfaces/errores'
+import { Curso} from 'src/app/interfaces/curso';
 import { CursoService } from 'src/app/services/curso';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-crear-editar',
@@ -19,7 +22,7 @@ export class CrearEditarComponent implements OnInit {
     private fb: FormBuilder,
     private _cursoService: CursoService,
     private router: Router,
-    private toastr: ToastrService,
+    private toastrUtils: ToastrUtils,
     private aRouter: ActivatedRoute
   ){
     this.form = this.fb.group({
@@ -39,45 +42,52 @@ export class CrearEditarComponent implements OnInit {
     }
   }
 
-  Buscar(id: number) {
-    this.loading = true;
-    this._cursoService.buscar(id).subscribe((data:Curso) => {
-      this.loading = false;
+  async Buscar(id: number) {
+    try {
+      this.loading = true;
+      const data = await firstValueFrom(this._cursoService.buscar(id));
       this.form.setValue({
-        grado: data.grupo,
+        grado: data.grado,
         grupo: data.grupo,
         nivel: data.nivel
-      })
-    })
-  }
-
-  Save() {
-    const curso: Curso = {
-      grado: this.form.value.grado,
-      grupo: this.form.value.grupo,
-      nivel: this.form.value.nivel
+      });
+    } catch (error) {
+      console.error('Error al buscar curso:', error);
+    } finally {
+      this.loading = false;
     }
-
-    this.loading = true;
-
-    if (this.id !== 0) {
-      // Es editar 
-      //curso.id = this.id;
+  }
+  /**
+   * Guarda o actualiza un curso usando async/await
+   */
+  async Save(): Promise<void> {
     
-      this._cursoService.update(this.id, curso).subscribe(() => {
-        this.toastr.info(`El curso ${curso.grado} fue actualizado con exito`, 'Curso actualizado');
-        this.loading = false;
-        this.router.navigate(['/curso']);
-      })
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+    
+    const curso: Curso = {
+      grado: this.form.value.grado.trim(),
+      grupo: this.form.value.grupo.trim(),
+      nivel: this.form.value.nivel.trim()
+    };
+    
+    try {
+      this.loading = true;
+      if (this.id !== 0) {
+        await firstValueFrom(this._cursoService.update(this.id, curso));
+        this.toastrUtils.mostrarMensaje('Éxito',`Curso ${curso.grado} actualizado`,'success');
 
-    } else {
-      // Es agregar
-      console.log(curso);
-      this._cursoService.save(curso).subscribe(() => {
-        this.toastr.success(`El curso ${curso.grado} fue registrado con exito`, 'Curso registrado');
-        this.loading = false;
-        this.router.navigate(['/curso']);
-      })
+      } else {
+        await firstValueFrom(this._cursoService.save(curso)); // Removido await duplicado
+        this.toastrUtils.mostrarMensaje('Éxito',`Curso ${curso.grado} registrado`,'success');
+      }
+      this.router.navigate(['/curso']);
+    } catch (error) {
+      console.error('Error HTTP:', error);
+    } finally {
+      this.loading = false;
     }
   }
 

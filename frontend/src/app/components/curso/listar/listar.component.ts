@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
+import { ToastrUtils } from 'src/app/utils/toast.utils';
 import { Curso } from 'src/app/interfaces/curso';
 import { CursoService } from 'src/app/services/curso';
 import { SweetAlertService } from 'src/app/services/sweet-alert.service';
@@ -16,7 +16,7 @@ export class ListarComponent implements OnInit {
   constructor(
     private _cursoService: CursoService,
     private _sweetAlert: SweetAlertService,
-    private toastr: ToastrService,
+    private toastrUtils: ToastrUtils,
   ) { }
 
   ngOnInit(): void {
@@ -34,10 +34,7 @@ export class ListarComponent implements OnInit {
   }
 
   async Delete(id: number) {
-    const result = await this._sweetAlert.mostrarConfirmacion(
-      "¿Estás seguro?",
-      "¡No podrás revertir esta acción!"
-    );
+    const result = await this._sweetAlert.mostrarConfirmacion();
 
     // Verificar si el usuario confirmó la eliminación
     if (result.isConfirmed) {
@@ -45,7 +42,7 @@ export class ListarComponent implements OnInit {
       this.loading = true;
       this._cursoService.delete(id).subscribe(() => {
         this.GetList();
-        this.toastr.error(`El Registro fue eliminado con éxito`, 'Curso Eliminado');
+        this.toastrUtils.mostrarMensaje('Curso Eliminado',`El Registro fue eliminado con éxito`, 'info');
       });
     }
 

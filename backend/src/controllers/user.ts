@@ -44,7 +44,7 @@ export const loginUser = async (req: Request, res: Response) => {
    const user: any = await User.findOne({ where: { username: username } });
 
    if(!user) {
-        return res.status(400).json({
+        return res.status(403).json({
             mensaje: `No existe un usuario con el nombre ${username} en la base datos`
         })
    }
@@ -52,7 +52,7 @@ export const loginUser = async (req: Request, res: Response) => {
    // Validamos password
    const passwordValid = await bcrypt.compare(password, user.password)
    if(!passwordValid) {
-    return res.status(400).json({
+    return res.status(403).json({
         mensaje: `Password Incorrecta`
     })
    }

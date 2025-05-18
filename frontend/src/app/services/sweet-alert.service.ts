@@ -13,7 +13,7 @@ export class SweetAlertService {
     Swal.fire(titulo, mensaje, tipo);
   }
 
-  async mostrarConfirmacion(titulo: string, mensaje: string): Promise<SweetAlertResult<any>> {
+  async mostrarConfirmacion(titulo: string ='¿Estás seguro?', mensaje: string = '¡No podrás revertir esta acción!'): Promise<SweetAlertResult<any>> {
     return Swal.fire({
       title: titulo,
       text: mensaje,

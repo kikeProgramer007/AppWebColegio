@@ -24,7 +24,7 @@ export class AddTokenInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
         if(error.status === 401){
-          this._errorService.msjError(error)
+          this._errorService.handleError(error)
           this.router.navigate(['/login'])
         }
         return throwError(() => error);

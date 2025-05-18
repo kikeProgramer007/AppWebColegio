@@ -1231,3 +1231,20 @@
     font-size: 13px;
     color: #012970;
   }
+
+.custom-toast {
+  /* Ajusta aquí el ancho que necesites */
+  max-width: 520px !important; 
+
+}
+
+/* Si quieres que el título tenga tamaño propio */
+.custom-toast .toast-title {
+  font-size: 0.9rem !important;
+  font-weight: bold;
+}
+
+/* Si quieres que el mensaje tenga tamaño propio */
+.custom-toast .toast-message {
+  font-size: 0.75rem !important;
+}

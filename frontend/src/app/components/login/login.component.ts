@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/inicio'])
       },
       error: (e: HttpErrorResponse) => {
-        this._errorService.msjError(e);
+        this._errorService.handleError(e)
         this.loading = false
       }
     })
