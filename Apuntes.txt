@@ -85,3 +85,10 @@ npm install class-validator class-transformer
 
 Variables aleatorias de postman:
 https://learning.postman.com/docs/tests-and-scripts/write-scripts/variables-list/
+
+
+REQUISITOS
+Angular CLI: 17.3.7
+Node: 20.11.1
+Package Manager: npm 10.2.4
+OS: win32 x64
